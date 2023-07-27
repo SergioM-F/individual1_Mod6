@@ -5,12 +5,13 @@ import android.os.Bundle
 
 /*
 [x] Navigation
-[ ] Framento Agregar
-[ ] Crear Interfaz
-[ ] Room
-    [ ] _Dao
-    [ ] _Base Datos
-    [ ] _Entity
+[x ] Framento Agregar
+[x ] Crear Interfaz UI (boton textView Etc)
+[X] Room
+    [X ] _Entity
+    [X ] _Dao
+    [X ] _Base Datos
+
 [ ] Fragmento listado
 [ ] RecyclerView
 
