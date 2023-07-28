@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 class AgregarFragment : Fragment() {
 
     lateinit var binding: FragmentAgregarBinding
+    lateinit var repositorio: Repositorio
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +28,14 @@ class AgregarFragment : Fragment() {
     ): View? {
         binding = FragmentAgregarBinding.inflate(layoutInflater,container,false)
 
+        initRepositorio()
         initListener()
         cargarTareas()
         return binding.root
+    }
+
+    private fun initRepositorio() {
+        repositorio = Repositorio(TareaBaseDatos.getDatabase(requireContext()).getTaskDao())
     }
 
     private fun initListener() {
@@ -40,19 +46,20 @@ class AgregarFragment : Fragment() {
     }
 
     private fun guardarTarea(texto:String) {
-        val dao= TareaBaseDatos.getDatabase(requireContext()).getTaskDao()
+
         val tarea = Tarea(texto, "10-05-2023")
-        GlobalScope.launch { dao.insertarTarea(tarea) }
+        GlobalScope.launch { repositorio.insertTarea(tarea) }
 
     }
 
     private fun cargarTareas() {
-        val dao= TareaBaseDatos.getDatabase(requireContext()).getTaskDao()
-        GlobalScope.launch {
-            val tareas = dao.getTareas()
-            val tareasTexto = tareas.joinToString("\n") { it.nombre + it.fecha }
+
+        repositorio.obtenerTarea().observe(requireActivity()){
+            val tareasTexto = it.joinToString("\n") { it.nombre + it.fecha } //se puede concatenar con + para agregar datos que uno quiera sumar o solo el it para agregar todo
             binding.textViewMostrar.text = tareasTexto
+
         }
+
 
     }
 

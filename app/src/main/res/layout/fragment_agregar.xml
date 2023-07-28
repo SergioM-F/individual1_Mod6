@@ -11,7 +11,7 @@
         android:id="@+id/editTextIngresoTarea"
         android:layout_width="265dp"
         android:layout_height="91dp"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="16dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/agregue_tarea"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="@+id/editTextIngresoTarea"
         app:layout_constraintStart_toStartOf="@+id/editTextIngresoTarea"
         app:layout_constraintTop_toBottomOf="@+id/textViewMostrar"
-        app:layout_constraintVertical_bias="0.324" />
+        app:layout_constraintVertical_bias="0.131" />
 
     <TextView
         android:id="@+id/textViewMostrar"
